@@ -7,8 +7,10 @@
 
     SubShader
     {
-        Tags { "RenderType" = "Transparent" }
+        Tags { "RenderType" = "Opaque" }
         LOD 100
+
+        GrabPass { }
 
         Pass
         {
@@ -30,8 +32,8 @@
                 float4 vertex : SV_POSITION;
             };
 
-            sampler2D _CameraOpaqueTexture;
-            float4 _CameraOpaqueTexture_TexelSize;
+            sampler2D _GrabTexture;
+            float4 _GrabTexture_TexelSize;
 
             float _Blur;
 
@@ -41,9 +43,9 @@
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
 #if UNITY_UV_STARTS_AT_TOP
-                o.uv = (o.vertex.xy + o.vertex.w) * 0.5;
-#else
                 o.uv = (o.vertex.xy * -1 + o.vertex.w) * 0.5;
+#else
+                o.uv = (o.vertex.xy + o.vertex.w) * 0.5;
 #endif
 
                 return o;
@@ -59,7 +61,7 @@
                     for(int y = -_Blur; y <= _Blur; y++)
                     {
                         float2 uv = float2(i.uv.x + 1 / _ScreenParams.x * x, i.uv.y + 1 / _ScreenParams.y * y);
-                        finalColor += tex2D(_CameraOpaqueTexture, uv);
+                        finalColor += tex2D(_GrabTexture, uv);
                     } 
                 }
                 return finalColor / sampleColors;
