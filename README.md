@@ -6,7 +6,11 @@ A collection of shaders I have created. Some will be for Unity's "normal" render
 
 ### Linear Blur (Single Pass)*
 
-![UI Linear Blur](https://github.com/rausc-daniel/BlurShader/blob/master/img/UI_LinearBlur.png)
+![UI Linear Blur](https://github.com/rausc-daniel/ShaderCollection/blob/master/img/UI_LinearBlur.png)
+
+### Magnification (Single Pass)*
+
+![Magnification](https://github.com/rausc-daniel/ShaderCollection/blob/master/img/Magnification.png)
 
 ---
 
